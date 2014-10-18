@@ -19,7 +19,7 @@ public class Bug {
 
 	private String description;
 
-	private String severity;
+	private String gravidade;
 
 	@ManyToOne
 	private Project projeto;
@@ -44,12 +44,12 @@ public class Bug {
 		this.description = description;
 	}
 
-	public String getSeverity() {
-		return severity;
+	public String getGravidade() {
+		return gravidade;
 	}
 
-	public void setSeverity(String severity) {
-		this.severity = severity;
+	public void setGravidade(String gravidade) {
+		this.gravidade = gravidade;
 	}
 
 	public Project getProjeto() {
