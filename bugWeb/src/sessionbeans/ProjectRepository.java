@@ -53,7 +53,7 @@ public class ProjectRepository {
 	}
 
 	/**
-	 * 
+	 * @param Long id = recebe o id de um projeto para deleta-lo
 	 * @return void - Só administradores podem remover um Projeto, todos os seus
 	 *         bugs serão apagados em cascata
 	 * */
@@ -66,11 +66,11 @@ public class ProjectRepository {
 				"select b from Bug b where b.projeto = :projeto", Bug.class);
 
 		query.setParameter("projeto", projeto);
+		@SuppressWarnings("unchecked")
 		List<Bug> bugs = query.getResultList();
 
 		for (Bug bug : bugs) {
-
-			// removo os bugs e depois o projeto
+ 
 			this.manager.remove(bug);
 
 		}

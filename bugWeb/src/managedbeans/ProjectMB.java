@@ -5,7 +5,6 @@ import java.util.List;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.servlet.http.HttpServletRequest;
 
 import sessionbeans.ProjectRepository;
 import entidades.Project;
@@ -30,28 +29,20 @@ public class ProjectMB {
 		this.project = new Project();
 		this.projects = null;
 	}
-	
-	
 
 	public void delete(Long id) {
 		this.projectRepository.removeById(id);
 		this.projects = null;
-		
-		 
+
 	}
-	
-	
 
 	public void prepareEdit(Long id) {
 		this.project = this.projectRepository.findById(id);
 	}
-	
-	
 
 	public Project getProject() {
 		return project;
 	}
-	
 
 	public List<Project> getProjects() {
 		if (this.projects == null) {
