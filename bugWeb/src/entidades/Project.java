@@ -7,8 +7,8 @@ import javax.persistence.Id;
 
 
 /**
- * @author vanderson
- * @version 1.0
+ * @author vanderson Nogueira
+ * @version 0.0.2
  * @
  * 
  * */

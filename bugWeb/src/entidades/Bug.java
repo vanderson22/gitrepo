@@ -5,9 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-
 /**
- * @author vanderson
+ * @author vanderson nogueira - entidade forte que vai ser usada por todo o
+ *         projeto
  * 
  * */
 @Entity
@@ -23,10 +23,9 @@ public class Bug {
 
 	@ManyToOne
 	private Project projeto;
-	
-	
+
 	public Bug() {
-		//    Auto-generated constructor stub
+		// Auto-generated constructor stub
 	}
 
 	public Long getId() {
