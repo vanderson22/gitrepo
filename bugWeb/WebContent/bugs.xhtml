@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+
+
+
+	<ui:include src="/WEB-INF/templates/menu.xhtml" />
+
+
+
+	<hr />
+
+	<h1>New Bug</h1>
+
+	<h:form>
+		<h:inputHidden value="#{ bugMB . bug .id}" />
+		<h:panelGrid columns="2">
+
+			<h:outputLabel value="Severity : " />
+			<h:selectOneMenu value="#{bugMB.bug.gravidade}">
+				<f:selectItem itemValue="LOW" />
+				<f:selectItem itemValue="MEDIUM" />
+				<f:selectItem itemValue="HIGH" />
+
+			</h:selectOneMenu>
+
+			<h:outputLabel value=" Description :" />
+			<h:inputTextarea value="#{ bugMB . bug . description }" />
+
+			<h:outputLabel value=" Project :" />
+			<h:selectOneMenu value="#{ bugMB . projectId }">
+				<f:selectItems value="#{ projectMB . projects }" var="project"
+					itemLabel="#{ project . name }" itemValue="#{ project .id}" />
+			</h:selectOneMenu>
+
+			<h:commandButton action="#{ bugMB . save }" value=" Save " />
+		</h:panelGrid>
+	</h:form>
+
+	<hr />
+	<h:messages />
+	<h1>Bug List</h1>
+	<h:dataTable value="#{ bugMB . bugs }" var="bug"
+		rendered="#{ not empty bugMB . bugs }" border="1">
+		<h:column>
+			<f:facet name=" header ">Id </f:facet>
+  #{ bug .id}
+  </h:column>
+
+		<h:column>
+			<f:facet name=" header ">Project </f:facet>
+  #{ bug . projeto . name }
+ </h:column>
+
+		<h:column>
+			<f:facet name=" header ">Severity </f:facet>
+  #{ bug .gravidade}
+   </h:column>
+
+		<h:column>
+			<f:facet name=" header "> Description </f:facet>
+  #{ bug . description }
+  </h:column>
+
+		<h:column>
+			<f:facet name=" header ">Delete </f:facet>
+			<h:form>
+				<h:commandLink action="#{ bugMB . delete (bug.id)}">delete </h:commandLink>
+			</h:form>
+		</h:column>
+		<h:column>
+			<f:facet name=" header ">Edit </f:facet>
+
+			<h:form>
+				<h:commandLink action="#{ bugMB.prepareEdit(bug.id)}">edit 
+					</h:commandLink>
+			</h:form>
+
+		</h:column>
+	</h:dataTable>
+
+
+
+</h:body>
+</html>

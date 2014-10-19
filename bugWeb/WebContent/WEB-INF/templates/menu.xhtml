@@ -8,19 +8,13 @@
 <h:body>
 
 
-	<h1>Login</h1>
 	<h:form>
 		<h:panelGrid>
-			<h:outputLabel value=" Username :" />
-			<h:inputText value="#{ authenticatorMB . username }" />
+			<h:commandLink action="#{ authenticatorMB . logout }">logout </h:commandLink>
 
-			<h:outputLabel value=" Password :" />
-			<h:inputSecret value="#{ authenticatorMB . password }" />
-
-			<h:commandButton action="#{ authenticatorMB . login }"
-				value=" login " />
+			<h:outputLink value="#{ request . contextPath }/projects.xhtml">Projects </h:outputLink>
+			<h:outputLink value="#{ request . contextPath }/bugs.xhtml">Bugs </h:outputLink>
 		</h:panelGrid>
 	</h:form>
-
 </h:body>
 </html>

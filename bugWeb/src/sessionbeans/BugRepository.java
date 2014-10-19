@@ -3,12 +3,17 @@ package sessionbeans;
 import java.util.List;
 
 import javax.annotation.security.RolesAllowed;
+import javax.ejb.Schedule;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
+import javax.faces.context.FacesContext;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.servlet.http.HttpServletRequest;
 
+import managedbeans.BugMB;
 import entidades.Bug;
 
 @Stateless
@@ -17,6 +22,7 @@ public class BugRepository {
 
 	@PersistenceContext
 	private EntityManager manager;
+	 
 
 	public void add(Bug bug) {
 
@@ -24,11 +30,18 @@ public class BugRepository {
 
 	}
 
-	
+	@Schedule(second = "*/5", minute = "*", hour = "*")
+	public void trocaPagina() {
+
+		System.out.println("Trocando !!!");
+		
+	 
+	}
+
 	/**
 	 * 
-	 * @return void - só administradores podem remover bugs do projeto 
-	 * RolesAllowed("ADMIN")
+	 * @return void - só administradores podem remover bugs do projeto
+	 *         RolesAllowed("ADMIN")
 	 * 
 	 * */
 	@RolesAllowed("ADMIN")
@@ -40,9 +53,7 @@ public class BugRepository {
 	}
 
 	public void edit(Bug bug) {
-
 		this.manager.merge(bug);
-
 	}
 
 	@TransactionAttribute(TransactionAttributeType.NOT_SUPPORTED)
@@ -57,7 +68,5 @@ public class BugRepository {
 		return this.manager.find(Bug.class, id);
 
 	}
-	
-	
 
 }

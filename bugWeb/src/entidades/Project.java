@@ -4,12 +4,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
-
-
 /**
  * @author vanderson Nogueira
- * @version 0.0.2
- * @
+ * @version 0.0.2 @
  * 
  * */
 @Entity
@@ -18,9 +15,9 @@ public class Project {
 	@Id
 	@GeneratedValue
 	private Long id;
-	
-	private String nome;
-	
+
+	private String name;
+
 	private String description;
 
 	public Long getId() {
@@ -31,12 +28,12 @@ public class Project {
 		this.id = id;
 	}
 
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -46,7 +43,11 @@ public class Project {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Project [id=" + id + ", name=" + name + ", description="
+				+ description + "]";
+	}
+
 }

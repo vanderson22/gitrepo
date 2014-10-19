@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head></h:head>
+<h:body>
+
+	<ui:include src="/WEB-INF/templates/menu.xhtml" />
+
+	<hr />
+
+	<h1>New Project</h1>
+	<h:form>
+		<h:panelGrid>
+			<h:inputHidden value="#{ projectMB . project .id}" />
+
+			<h:outputLabel value=" Name :" />
+			<h:inputText value="#{ projectMB . project . name }" />
+			<h:outputLabel value=" Description :" />
+			<h:inputTextarea value="#{ projectMB . project . description }" />
+
+			<h:commandButton action="#{ projectMB . save }" value=" Save " />
+		</h:panelGrid>
+	</h:form>
+
+	<hr />
+	<h1>Project List</h1>
+	<h:dataTable value="#{ projectMB . projects }" var="project"
+		rendered="#{ not empty projectMB . projects }" border="1">
+		<h:column>
+			<f:facet name=" header ">Id </f:facet>
+ #{ project .id}
+ </h:column>
+
+		<h:column>
+			<f:facet name=" header ">Name </f:facet>
+ #{ project . name }
+ </h:column>
+
+		<h:column>
+			<f:facet name=" header "> Description </f:facet>
+ #{ project . description }
+ </h:column>
+
+		<h:column>
+			<f:facet name=" header ">Delete </f:facet>
+
+			<h:form>
+				<h:commandLink action="#{ projectMB . delete ( project .id)}">delete </h:commandLink>
+ 
+			</h:form>
+
+			</h:column >
+ <h:column>
+ <f:facet name=" header ">Edit </f:facet >
+
+ <h:form>
+ <h:commandLink action="#{ projectMB . prepareEdit ( project .id)}">edit </h:commandLink >
+ </h:form >
+
+ </h:column >
+ </h:dataTable >
+</h:body>
+</html>
